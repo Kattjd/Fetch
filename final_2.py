@@ -534,10 +534,12 @@ def calculate(*args):
     if selection7 == 1:
         breedExclude.extend(firstDogYes)    #record dogs to a seperate list who can not go to a first time owner/can't live with kids/exc. to exclude from final results
     selection8 = children.get()
-    if selection8 == 1:
-         breedExclude.extend(childrenOlder)
     if selection8 == 2:
+         breedExclude.extend(childrenOlder)
+    if selection8 == 1:
         breedExclude.extend(childrenYounger)
+    if selection8 == 1 or 2:
+        breedExclude.extend(childrenNo)
     selection9 = pets.get()
     if selection9 == 1:
         breedExclude.extend(petsDog)
@@ -888,11 +890,14 @@ def openNewWindow():
             with open('firstDogYes.txt', 'a') as f:
                 f.write("{}{}".format(dogsName, " "))
         selectionAdd8 = addChildren.get()
-        if selectionAdd8 == 1:
+        if selectionAdd8 == 2:
             with open('childrenOlder.txt', 'a') as f:
                 f.write("{}{}".format(dogsName, " "))
-        if selectionAdd8 == 2:
+        if selectionAdd8 == 3:
             with open('childrenYounger.txt', 'a') as f:
+                f.write("{}{}".format(dogsName, " "))
+        if selectionAdd8 == 1:
+            with open('childrenNo.txt', 'a') as f:
                 f.write("{}{}".format(dogsName, " "))
         selectionAdd9 = addPets.get()
         if selectionAdd9 == 1:
@@ -993,7 +998,7 @@ def openNewWindow():
     Large = ttk.Radiobutton(newWindow, text='Large', variable=addSize, value=2).grid(column=6, row=18, sticky=W)
     Average = ttk.Radiobutton(newWindow, text='Medium', variable=addSize, value=3).grid(column=6, row=19, sticky=W)
     Low = ttk.Radiobutton(newWindow, text='Small', variable=addSize, value=4).grid(column=6, row=20, sticky=W)
-    noData = ttk.Radiobutton(newWindow, text='Not sure/No data', variable=addSize, value=6).grid(column=5, row=21, sticky=W)
+    noData = ttk.Radiobutton(newWindow, text='Not sure/No data', variable=addSize, value=6).grid(column=6, row=21, sticky=W)
     ttk.Label(newWindow, text="Size?").grid(column=6, row=16, sticky=W)
 
     addFirstDog = IntVar()
